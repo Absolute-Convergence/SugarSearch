@@ -15,8 +15,9 @@ Last updated: 2026-08-12.
 - Current version is `0.0.1.0`. SugarSearch uses four-part versions in the
   form `0.0.0.1`, with release tags prefixed by `v`. The SugarSearch `origin`
   is `https://github.com/Absolute-Convergence/SugarSearch.git`; the inherited
-  repository is the `upstream`
-  remote; add a new `origin` only when the SugarSearch repository URL exists.
+  repository is the `upstream` remote.
+- The verified bootstrap is published on `origin/main`; annotated release tag
+  `v0.0.1.0` identifies the first SugarSearch continuation release.
 - No SugarBot integration is implemented. Use
   `docs/sugarbot-integration-horizon.md` as the non-binding direction.
 
@@ -59,9 +60,6 @@ sugarsearch config.json --output-dir runs
 
 ## Next Work
 
-- The generated, unrelated `origin/main` initial commit was connected as a
-  second parent while retaining the audited SugarSearch tree. Publish the
-  verified bootstrap to `origin/main` and tag it `v0.0.1.0`.
 - Ratify the capability audit priorities before expanding the inherited MVP.
 - Decide the first SugarSearch-native user problem before adding SugarBot
   coupling, networking, concurrency, persistence changes, or new algorithms.
