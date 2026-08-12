@@ -7,6 +7,8 @@
 - **Lineage:** full Git history retained; source remote renamed to `upstream`
 - **Continuation remote:**
   `https://github.com/Absolute-Convergence/SugarSearch.git` as `origin`
+- **Remote bootstrap reconciliation:** the GitHub-generated initial commit was
+  retained as a merge parent without replacing the audited SugarSearch tree
 - **SugarSearch version:** `0.0.1.0`
 
 ## Executive Assessment

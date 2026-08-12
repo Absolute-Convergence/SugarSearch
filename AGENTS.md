@@ -59,8 +59,9 @@ sugarsearch config.json --output-dir runs
 
 ## Next Work
 
-- Reconcile the generated, unrelated `origin/main` initial commit before the
-  first SugarSearch push.
+- The generated, unrelated `origin/main` initial commit was connected as a
+  second parent while retaining the audited SugarSearch tree. Publish the
+  verified bootstrap to `origin/main` and tag it `v0.0.1.0`.
 - Ratify the capability audit priorities before expanding the inherited MVP.
 - Decide the first SugarSearch-native user problem before adding SugarBot
   coupling, networking, concurrency, persistence changes, or new algorithms.

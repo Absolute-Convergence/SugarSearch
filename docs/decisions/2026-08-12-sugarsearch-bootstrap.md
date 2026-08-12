@@ -19,8 +19,10 @@ new SugarSearch releases cannot be mistaken for Hyperloop v0.1.1.
 - Keep the inherited repository as the `upstream` remote. Do not retain it as
   `origin`, which could make an accidental push target the source project.
 - Use `https://github.com/Absolute-Convergence/SugarSearch.git` as `origin`.
-  Its generated initial commit is unrelated to the inherited history and must
-  be reconciled deliberately before publishing the first SugarSearch commit.
+  Its generated initial commit was unrelated to the inherited history, so it
+  was connected with a merge using Git's `ours` strategy. That preserves the
+  GitHub-created commit as provenance while retaining the audited SugarSearch
+  tree and full Hyperloop lineage.
 - Use `SugarSearch` for the product and GUI name.
 - Use `sugarsearch` for the distribution, Python package, module command, and
   installed optimizer command.
