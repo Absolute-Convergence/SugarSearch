@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from black_box_optimizer.metrics import (
+from sugarsearch.metrics import (
     MetricsFormatError,
     NonFiniteMetricError,
     _clean_headers,

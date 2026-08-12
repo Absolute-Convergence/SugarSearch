@@ -1,8 +1,15 @@
-# Hyperloop
+# SugarSearch
 
-CSCI 3038 final project by The Snek People.
+SugarSearch is an independent continuation of
+[Hyperloop](https://github.com/Absolute-Convergence/CSCI-3038-Final_Project),
+the CSCI 3038 project originally developed by The Snek People. The bootstrap
+preserves the MIT license, original attribution, and full Git history while
+giving new work a distinct product, package, and command identity.
 
-Hyperloop is a local Python 3.13.14 black-box optimizer for
+The current bootstrap version is `0.0.1.0`; its release-tag form is
+`v0.0.1.0`. SugarSearch uses four numeric version components.
+
+SugarSearch is currently a local Python 3.13.14 black-box optimizer for
 tuning an external worker program without importing or inspecting that
 worker's internal code. It sends candidate parameters through command-line
 flags, receives one row of numerical metrics through a trial-specific CSV
@@ -16,33 +23,17 @@ records, append-only history, lifecycle control, atomic persistence, complete
 mixed-direction Pareto evaluation, immutable results, reporting, and module
 and installed command-line entry points. The external PyTorch Iris worker
 remains outside the distribution. A dependency-free ZDT1 synthetic worker is
-distributed in a separate namespace so Hyperloop can still treat it as an
+distributed in a separate namespace so SugarSearch can still treat it as an
 opaque subprocess.
 
-See [docs/architecture-baseline.md](docs/architecture-baseline.md) for the
-controlling foundation contracts and MVP boundaries.
-
-See [docs/gui-handoff-next-steps.md](docs/gui-handoff-next-steps.md) for the
-recommended handoff from Charles's Tkinter GUI to Hyperloop's existing CLI and
-run artifacts.
-
-See [docs/package-release-checklist.md](docs/package-release-checklist.md) for
-the single-package v0.1.1 release boundary, audit evidence, and publication
-gates.
-
-See https://www.youtube.com/watch?v=uJGIRFCtbKU for the demo guide.
-
-The current planning guidance is the aligned Draft v0.2 document set in
-[`docs/planning_baseline_v02`](docs/planning_baseline_v02). It remains pending
-team ratification and technical approval. Draft v0.1 is preserved unchanged in
-[`docs/planning_baseline_v01`](docs/planning_baseline_v01) as the historical
-source baseline.
-
-Repository decisions and operating guidance in [AGENTS.md](AGENTS.md), together
-with the approved architecture baseline, control when the draft planning set
-conflicts with merged code or a recorded human decision. Public-contract
-differences must still be reconciled through change control; implementation
-drift recorded in scratch notes does not silently amend a controlled contract.
+Start with the
+[capability audit](docs/audits/2026-08-12-capability-audit.md), the
+[bootstrap decision](docs/decisions/2026-08-12-sugarsearch-bootstrap.md), and
+the [SugarBot integration horizon](docs/sugarbot-integration-horizon.md).
+The [architecture baseline](docs/architecture-baseline.md) remains the
+controlling foundation contract. Hyperloop planning, release, and GUI handoff
+documents are retained as historical provenance under `docs/upstream` and the
+versioned planning directories; they are not current SugarSearch commitments.
 
 ## MVP Runtime Flow
 
@@ -91,8 +82,8 @@ Items marked `implemented` exist in the completed implementation stack. The GUI
 remains an optional, independent presentation layer.
 
 ```text
-CSCI-3038-Final_Project/
-|-- AGENTS.md                         # repository rules and scratch memory
+SugarSearch/
+|-- AGENTS.md                         # concise repository compass
 |-- KNOWN_ISSUES.md                   # reproduced defects in merged code
 |-- README.md                         # project overview and development map
 |-- pyproject.toml                    # package metadata and installed CLI
@@ -101,7 +92,7 @@ CSCI-3038-Final_Project/
 |-- requirements-gui.txt             # optional source GUI dependency
 |-- requirements-release.txt         # build and publication tools
 |-- source_hygiene.json               # global source-file hygiene settings
-|-- black_box_optimizer/
+|-- sugarsearch/
 |   |-- __init__.py                   # implemented public model exports
 |   |-- __main__.py                   # implemented module entry point
 |   |-- cli.py                        # implemented CLI composition
@@ -123,7 +114,7 @@ CSCI-3038-Final_Project/
 |       |-- registry.py               # implemented built-in algorithm registry
 |       |-- random_search.py          # implemented seeded Random Search
 |       `-- nsga2.py                  # implemented seeded NSGA-II
-|-- hyperloop_workers/
+|-- sugarsearch_workers/
 |   |-- __init__.py                   # separate bundled-worker namespace
 |   `-- synthetic_worker.py           # dependency-free ZDT1 worker
 |-- examples/
@@ -169,17 +160,19 @@ CSCI-3038-Final_Project/
 |   `-- fixtures/                     # implemented purpose-built workers
 |-- docs/
 |   |-- architecture-baseline.md      # implemented controlling baseline
-|   |-- gui-handoff-next-steps.md     # recommended GUI integration sequence
+|   |-- audits/                       # dated capability assessments
+|   |-- sugarbot-integration-horizon.md
+|   |-- upstream/                     # preserved Hyperloop release/GUI records
 |   |-- planning_baseline_v01/        # preserved historical planning baseline
 |   `-- planning_baseline_v02/        # current aligned draft planning guidance
 `-- tools/
     `-- check_monoliths.py            # implemented source hygiene checker
 ```
 
-Workers remain outside `black_box_optimizer`. The installed
-`hyperloop_workers.synthetic_worker` uses only the Python standard library.
+Workers remain outside `sugarsearch`. The installed
+`sugarsearch_workers.synthetic_worker` uses only the Python standard library.
 PyTorch belongs only to the source-checkout Iris example and its tests; it is
-not a dependency of the Hyperloop distribution.
+not a dependency of the SugarSearch distribution.
 
 ## Component Responsibilities
 
@@ -209,7 +202,7 @@ or executable paths from the configuration file's directory, and returns an
 immutable `ProjectConfiguration`. Invalid input raises `ConfigurationError`
 with one or more location-aware issues.
 
-The `black_box_optimizer` package root currently exports:
+The `sugarsearch` package root currently exports:
 
 - `ParameterKind`
 - `ParameterDefinition`
@@ -231,81 +224,72 @@ and candidate mappings are defensively copied into read-only views.
 
 Additional implemented surfaces are imported from their owning modules:
 
-- `black_box_optimizer.metrics.read_trial_metrics`
-- `black_box_optimizer.records.TrialRecord` and `build_trial_record`
-- `black_box_optimizer.history.TrialHistory`
-- `black_box_optimizer.stop_policy.StopDecision` and `StopPolicyEvaluator`
-- `black_box_optimizer.runner.execute`
-- `black_box_optimizer.controller.ApplicationController`
-- `black_box_optimizer.pareto.is_eligible`
-- `black_box_optimizer.persistence.RunDirectory` and `create_run_directory`
-- `black_box_optimizer.reporting.Reporter`
-- `black_box_optimizer.application.initialize_application`
-- `black_box_optimizer.search.base.ProposalResult` and `SearchAlgorithm`
-- `black_box_optimizer.search.registry.create_algorithm`
-- `black_box_optimizer.search.random_search.RandomSearch`
-- `black_box_optimizer.search.nsga2.NSGA2`
+- `sugarsearch.metrics.read_trial_metrics`
+- `sugarsearch.records.TrialRecord` and `build_trial_record`
+- `sugarsearch.history.TrialHistory`
+- `sugarsearch.stop_policy.StopDecision` and `StopPolicyEvaluator`
+- `sugarsearch.runner.execute`
+- `sugarsearch.controller.ApplicationController`
+- `sugarsearch.pareto.is_eligible`
+- `sugarsearch.persistence.RunDirectory` and `create_run_directory`
+- `sugarsearch.reporting.Reporter`
+- `sugarsearch.application.initialize_application`
+- `sugarsearch.search.base.ProposalResult` and `SearchAlgorithm`
+- `sugarsearch.search.registry.create_algorithm`
+- `sugarsearch.search.random_search.RandomSearch`
+- `sugarsearch.search.nsga2.NSGA2`
 
 See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for reproduced defects in merged code.
 
-## Quick install instructions 
-- TO RUN ON MAC:
+## Quick Start From This Checkout
 
-git clone https://github.com/Absolute-Convergence/CSCI-3038-Final_Project.git
-cd CSCI-3038-Final_Project
+SugarSearch currently requires Python 3.13.14. On Windows PowerShell:
 
-python3 --version
-(Make sure it’s 3.13)
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip setuptools
+python -m pip install -e .
+sugarsearch config.json --output-dir runs
+```
+
+On macOS or Linux with Python 3.13.14 available as `python3`:
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip setuptools
+python -m pip install -e .
+sugarsearch config.json --output-dir runs
+```
 
-python3 -m pip install --upgrade pip setuptools
-python3 -m pip install -e .
+The optional GUI needs the separate source-checkout dependencies:
 
-python3 -m black_box_optimizer \
-  examples/paper_airplane/paper_airplane_config.json \
-  --output-dir runs
-(or whatever worker you have)
-
-- TO RUN with GUI on Mac or Windows
-python3 -m venv .venv     (Mac only)
-source .venv/bin/activate (Mac only)
-
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+```powershell
 python -m pip install -r requirements-gui.txt
+python SugarSearch.py
+```
 
-python Hyperloop.py
-
-## Install and Run Hyperloop
+## Install and Run SugarSearch
 
 `worker.command` in a project configuration is the exact command that
 already runs your worker on your own machine, so it is inherently
-OS-specific -- Hyperloop never inspects or launches Python itself, it
+OS-specific -- SugarSearch never inspects or launches Python itself, it
 just execs what you give it. Every example below is shown for both
 Windows and macOS/Linux; use whichever matches your machine.
 
-Install the released distribution and invoke its dedicated command with a
-project configuration:
-
-```powershell
-py -3.13 -m pip install hyperloop-optimizer
-hyperloop-optimizer path\to\config.json --output-dir runs
-```
-
-```bash
-python3 -m pip install hyperloop-optimizer
-hyperloop-optimizer path/to/config.json --output-dir runs
-```
+No SugarSearch continuation release has been published yet. Install from this
+checkout as shown above; do not assume a similarly named package index project
+belongs to this repository.
 
 The existing module command remains supported:
 
 ```powershell
-py -3.13 -m black_box_optimizer path\to\config.json --output-dir runs
+py -3.13 -m sugarsearch path\to\config.json --output-dir runs
 ```
 
 ```bash
-python3 -m black_box_optimizer path/to/config.json --output-dir runs
+python3 -m sugarsearch path/to/config.json --output-dir runs
 ```
 
 From a source checkout, install the core package in editable mode. Install the
@@ -316,7 +300,7 @@ their worker command, so they run on macOS/Linux as-is:
 ```bash
 python3 -m pip install -e .
 python3 -m pip install -r requirements-iris.txt
-python3 -m black_box_optimizer \
+python3 -m sugarsearch \
   examples/iris_torch/iris_config.json \
   --output-dir runs
 ```
@@ -328,33 +312,33 @@ seeing real multi-objective search results in seconds instead of
 minutes:
 
 ```bash
-python3 -m black_box_optimizer \
+python3 -m sugarsearch \
   examples/paper_airplane/paper_airplane_config.json \
   --output-dir runs
 ```
 
 The distribution also includes a near-instant synthetic worker for smoke
 tests and search evaluation. It has its own installed command so worker
-configuration never needs to guess which Python interpreter owns Hyperloop:
+configuration never needs to guess which Python interpreter owns SugarSearch:
 
 ```powershell
-hyperloop-synthetic-worker --help
+sugarsearch-synthetic-worker --help
 ```
 
 ```bash
-hyperloop-synthetic-worker --help
+sugarsearch-synthetic-worker --help
 ```
 
 The source checkout includes a ready-to-run configuration:
 
 ```powershell
-hyperloop-optimizer `
+sugarsearch `
   examples\zdt1_benchmark\synthetic_config.json `
   --output-dir runs
 ```
 
 ```bash
-hyperloop-optimizer \
+sugarsearch \
   examples/zdt1_benchmark/synthetic_config.json \
   --output-dir runs
 ```
@@ -417,7 +401,7 @@ Normal completion and a no-eligible-trials result exit with code 0. Fatal
 failure exits with code 1, invalid initialization/configuration exits with code
 2, and user cancellation exits with code 130.
 
-The Hyperloop core package is verified on Python 3.13.14 with GitHub-hosted
+The SugarSearch core package is verified on Python 3.13.14 with GitHub-hosted
 Windows, Ubuntu, and macOS runners. Each platform installs the same validated
 wheel before running the core-compatible test suite, dependency validation,
 source hygiene check, and installed synthetic-worker smoke test. The optional
@@ -435,7 +419,7 @@ just inferred from the examples.
 ### The worker contract
 
 Your worker can be written in any language, as long as it's an
-executable command. Hyperloop never imports or inspects it -- it just
+executable command. SugarSearch never imports or inspects it -- it just
 runs your `worker.command` as a subprocess, once per trial, with two
 kinds of arguments appended automatically:
 
@@ -573,7 +557,7 @@ timestamped working branches.
 
 ## Development Verification
 
-Install Hyperloop and the separate Iris test dependency into the same Python
+Install SugarSearch and the separate Iris test dependency into the same Python
 3.13 interpreter used to run the complete repository suite:
 
 ```powershell
@@ -593,9 +577,9 @@ Run the repository-wide source hygiene check:
 py -3.13 tools\check_monoliths.py
 ```
 
-At the package-remediation checkpoint, 394 tests pass under the
-course-required Python 3.13.14 interpreter. The suite includes real
-controller-to-Iris runs, a synthetic-worker subprocess test, an end-to-end
-module CLI test, repeated-run isolation coverage, and packaging-boundary
-checks. The source-hygiene check passes across 62 source files; line-length
-advisories remain non-failing design guidance.
+At the SugarSearch bootstrap checkpoint, 427 tests pass with four optional
+skips under Python 3.13.14. The suite includes real controller-to-Iris runs, a
+synthetic-worker subprocess test, an end-to-end module CLI test, repeated-run
+isolation coverage, and packaging-boundary checks. The source-hygiene check
+passes across 72 source files; line-length advisories remain non-failing design
+guidance.

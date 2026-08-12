@@ -1,9 +1,9 @@
 # =============================================================================
-# hyperloop_theme
+# sugarsearch_theme
 # =============================================================================
 #
-# The pink visual theme for the HyperLoop GUI: color tokens and the ttk
-# style configuration that applies them. Split out of Hyperloop.py to keep
+# The pink visual theme for the SugarSearch GUI: color tokens and the ttk
+# style configuration that applies them. Split out of SugarSearch.py to keep
 # that file under the repository's source-hygiene line limit and to keep
 # styling concerns separate from GUI construction logic.
 #

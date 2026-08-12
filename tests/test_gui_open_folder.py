@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 try:
-    import Hyperloop
+    import SugarSearch
 except ModuleNotFoundError as error:
     if error.name in {"PIL", "tkinter", "_tkinter", "pandas"}:
         raise unittest.SkipTest(
@@ -23,23 +23,23 @@ class OpenFolderTests(unittest.TestCase):
 
     def test_windows_uses_startfile(self) -> None:
         with (
-            patch.object(Hyperloop.sys, "platform", "win32"),
+            patch.object(SugarSearch.sys, "platform", "win32"),
             patch.object(
-                Hyperloop.os,
+                SugarSearch.os,
                 "startfile",
                 create=True,
             ) as startfile,
         ):
-            Hyperloop._open_folder(self.folder)
+            SugarSearch._open_folder(self.folder)
 
         startfile.assert_called_once_with(self.resolved_folder)
 
     def test_macos_uses_nonblocking_open_command(self) -> None:
         with (
-            patch.object(Hyperloop.sys, "platform", "darwin"),
-            patch.object(Hyperloop.subprocess, "Popen") as launch,
+            patch.object(SugarSearch.sys, "platform", "darwin"),
+            patch.object(SugarSearch.subprocess, "Popen") as launch,
         ):
-            Hyperloop._open_folder(self.folder)
+            SugarSearch._open_folder(self.folder)
 
         launch.assert_called_once_with(
             ["open", self.resolved_folder],
@@ -48,10 +48,10 @@ class OpenFolderTests(unittest.TestCase):
 
     def test_linux_uses_nonblocking_xdg_open_command(self) -> None:
         with (
-            patch.object(Hyperloop.sys, "platform", "linux"),
-            patch.object(Hyperloop.subprocess, "Popen") as launch,
+            patch.object(SugarSearch.sys, "platform", "linux"),
+            patch.object(SugarSearch.subprocess, "Popen") as launch,
         ):
-            Hyperloop._open_folder(self.folder)
+            SugarSearch._open_folder(self.folder)
 
         launch.assert_called_once_with(
             ["xdg-open", self.resolved_folder],
@@ -60,15 +60,15 @@ class OpenFolderTests(unittest.TestCase):
 
     def test_launcher_error_preserves_results_location(self) -> None:
         with (
-            patch.object(Hyperloop.sys, "platform", "darwin"),
+            patch.object(SugarSearch.sys, "platform", "darwin"),
             patch.object(
-                Hyperloop.subprocess,
+                SugarSearch.subprocess,
                 "Popen",
                 side_effect=OSError("launcher unavailable"),
             ),
-            patch.object(Hyperloop.messagebox, "showerror") as showerror,
+            patch.object(SugarSearch.messagebox, "showerror") as showerror,
         ):
-            Hyperloop._open_folder(self.folder)
+            SugarSearch._open_folder(self.folder)
 
         showerror.assert_called_once()
         title, message = showerror.call_args.args

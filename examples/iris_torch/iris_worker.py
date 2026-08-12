@@ -8,7 +8,7 @@ This script accepts a learning_rate, hidden_size, epochs, and batch_size,
 then writes validation_accuracy, validation_loss, and training_time_seconds
 to the metrics file.
 
-IMPORTANT NOTE!!! This file intentionally lives outside black_box_optimizer.
+IMPORTANT NOTE!!! This file intentionally lives outside sugarsearch.
 The optimizer should never ever import it and it shouldn't care how it
 works internally. As far as the optimizer is concerned, this is just an
 opaque subprocess that accepts parameters and eventually produces

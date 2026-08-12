@@ -1,10 +1,10 @@
 # =============================================================================
-# hyperloop_help
+# sugarsearch_help
 # =============================================================================
 #
-# The two instructions popups shown from the HyperLoop GUI's header: a
+# The two instructions popups shown from the SugarSearch GUI's header: a
 # general usage overview, and Mr. Smith's specific walkthrough for testing
-# the real neural-network (Iris) example. Split out of Hyperloop.py to keep
+# the real neural-network (Iris) example. Split out of SugarSearch.py to keep
 # that file under the repository's source-hygiene line limit and to keep
 # static help content separate from the main GUI construction logic.
 #
@@ -13,7 +13,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from hyperloop_theme import _PAGE, _SURFACE, _PRIMARY_INK, _HEADING_FONT
+from sugarsearch_theme import _PAGE, _SURFACE, _PRIMARY_INK, _HEADING_FONT
 
 _INSTRUCTIONS_TEXT = (
     "GENERAL USAGE\n"
@@ -33,7 +33,7 @@ _INSTRUCTIONS_TEXT = (
 
 _MR_SMITH_INSTRUCTIONS_TEXT = (
     "Torch is not a dependency of the pipeline itself, so we did not "
-    "include it in requirements.txt. HyperLoop treats every worker as "
+    "include it in requirements.txt. SugarSearch treats every worker as "
     "an opaque subprocess -- it never imports or inspects worker code -- "
     "so the core package has no reason to depend on whatever machine "
     "learning library a given worker happens to use.\n\n"
@@ -44,9 +44,9 @@ _MR_SMITH_INSTRUCTIONS_TEXT = (
     "1. One-time setup, in a terminal in the project folder: "
     "python3 -m pip install -r requirements-iris.txt\n"
     "   This installs PyTorch into the same environment/interpreter "
-    "you're running HyperLoop from. It's a large package, so this can "
+    "you're running SugarSearch from. It's a large package, so this can "
     "take a few minutes and needs an internet connection.\n\n"
-    "2. In HyperLoop, set Worker Script to \"iris_worker.py\" from the "
+    "2. In SugarSearch, set Worker Script to \"iris_worker.py\" from the "
     "dropdown. Leave Metrics Argument as --metrics-out and Timeout at "
     "120.0 -- unlike Paper Airplane, each trial here actually trains a "
     "small network, so it takes a real (if short) amount of time.\n\n"
@@ -119,7 +119,7 @@ def _show_text_popup(root, app_icon, title, heading, body_text):
 
 def show_instructions(root, app_icon):
     _show_text_popup(
-        root, app_icon, "Instructions", "How to Use HyperLoop", _INSTRUCTIONS_TEXT
+        root, app_icon, "Instructions", "How to Use SugarSearch", _INSTRUCTIONS_TEXT
     )
 
 

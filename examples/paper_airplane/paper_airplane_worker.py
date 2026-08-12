@@ -37,7 +37,7 @@ settings drag accuracy down further from that line, down to 0% in the
 worst case. Verified computationally that no off-front point ever
 dominates a front point.
 
-IMPORTANT: this file intentionally lives outside black_box_optimizer.
+IMPORTANT: this file intentionally lives outside sugarsearch.
 The optimizer never imports it -- as far as the optimizer is concerned
 this is just an opaque subprocess that accepts parameters and writes
 metrics, same contract as iris_worker.py and synthetic_worker.py.

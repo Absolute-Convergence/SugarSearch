@@ -4,7 +4,7 @@ nsga2_elitism_only.py
 The middle step in NSGA2's evolution: elitism added, but polynomial
 mutation not yet -- mutation is still the original hard-reset behavior.
 
-Built from the current shipped black_box_optimizer/search/nsga2.py (its
+Built from the current shipped sugarsearch/search/nsga2.py (its
 elitism machinery -- _select_survivors, self._current_population_ids, the
 combined survivor-pool breeding in propose() -- is unchanged here) with
 _mutate() reverted to the pre-polynomial-mutation version: every mutated
@@ -24,14 +24,14 @@ from typing import NamedTuple
 
 import numpy as np
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
 )
-from black_box_optimizer.pareto import build_pareto_front, is_eligible
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.base import ProposalResult
-from black_box_optimizer.search.random_search import (
+from sugarsearch.pareto import build_pareto_front, is_eligible
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.base import ProposalResult
+from sugarsearch.search.random_search import (
     _finite_space_size,
     _sample_value,
     candidate_key,

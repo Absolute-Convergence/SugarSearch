@@ -3,7 +3,7 @@ nsga2_original.py
 
 The original NSGA-II implementation, exactly as it stood before elitism
 and polynomial mutation were added to the shipped algorithm in
-black_box_optimizer/search/nsga2.py.
+sugarsearch/search/nsga2.py.
 
 Pulled verbatim from git history (commit 9470366^, the parent of "Add
 elitism and polynomial mutation to NSGA2") and renamed NSGA2 -> to
@@ -24,14 +24,14 @@ from typing import NamedTuple
 
 import numpy as np
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
 )
-from black_box_optimizer.pareto import build_pareto_front, is_eligible
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.base import ProposalResult
-from black_box_optimizer.search.random_search import (
+from sugarsearch.pareto import build_pareto_front, is_eligible
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.base import ProposalResult
+from sugarsearch.search.random_search import (
     _finite_space_size,
     _sample_value,
     candidate_key,

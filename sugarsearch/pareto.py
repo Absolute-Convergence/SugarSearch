@@ -5,9 +5,9 @@ from __future__ import annotations
 import math
 from collections.abc import Sequence
 
-from black_box_optimizer.models import Direction, OptimizationContract
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.results import ParetoFront
+from sugarsearch.models import Direction, OptimizationContract
+from sugarsearch.records import TrialRecord
+from sugarsearch.results import ParetoFront
 
 
 def is_eligible(

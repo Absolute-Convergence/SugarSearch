@@ -9,22 +9,22 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
-from black_box_optimizer.cli import (
+from sugarsearch.cli import (
     _build_parser,
     _print_best_summary,
     _ProgressReporter,
     main,
 )
-from black_box_optimizer.config_loader import ConfigurationError
-from black_box_optimizer.models import (
+from sugarsearch.config_loader import ConfigurationError
+from sugarsearch.models import (
     Direction,
     Objective,
     OptimizationContract,
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.reporting import ReportingError
+from sugarsearch.records import TrialRecord
+from sugarsearch.reporting import ReportingError
 
 
 def make_record(
@@ -70,12 +70,12 @@ def make_session(status: str, termination_reason: str):
 class CliTests(unittest.TestCase):
     def test_entry_points_have_distinct_help_names(self) -> None:
         self.assertEqual(
-            _build_parser("python -m black_box_optimizer").prog,
-            "python -m black_box_optimizer",
+            _build_parser("python -m sugarsearch").prog,
+            "python -m sugarsearch",
         )
         self.assertEqual(
-            _build_parser("hyperloop-optimizer").prog,
-            "hyperloop-optimizer",
+            _build_parser("sugarsearch").prog,
+            "sugarsearch",
         )
 
     def test_result_statuses_map_to_stable_exit_codes(self) -> None:
@@ -89,7 +89,7 @@ class CliTests(unittest.TestCase):
             with self.subTest(status=status):
                 session = make_session(status, reason)
                 with patch(
-                    "black_box_optimizer.cli.initialize_application",
+                    "sugarsearch.cli.initialize_application",
                     return_value=session,
                 ):
                     with redirect_stdout(io.StringIO()):
@@ -100,7 +100,7 @@ class CliTests(unittest.TestCase):
         error = ConfigurationError(("root: invalid",))
         stderr = io.StringIO()
         with patch(
-            "black_box_optimizer.cli.initialize_application",
+            "sugarsearch.cli.initialize_application",
             side_effect=error,
         ):
             with redirect_stderr(stderr):
@@ -112,7 +112,7 @@ class CliTests(unittest.TestCase):
     def test_initialization_interrupt_returns_130(self) -> None:
         stderr = io.StringIO()
         with patch(
-            "black_box_optimizer.cli.initialize_application",
+            "sugarsearch.cli.initialize_application",
             side_effect=KeyboardInterrupt(),
         ):
             with redirect_stderr(stderr):
@@ -124,7 +124,7 @@ class CliTests(unittest.TestCase):
     def test_os_error_during_initialization_returns_one(self) -> None:
         stderr = io.StringIO()
         with patch(
-            "black_box_optimizer.cli.initialize_application",
+            "sugarsearch.cli.initialize_application",
             side_effect=OSError("disk full"),
         ):
             with redirect_stderr(stderr):
@@ -139,7 +139,7 @@ class CliTests(unittest.TestCase):
         session.run.side_effect = ReportingError("could not write summary")
         stderr = io.StringIO()
         with patch(
-            "black_box_optimizer.cli.initialize_application",
+            "sugarsearch.cli.initialize_application",
             return_value=session,
         ):
             with redirect_stderr(stderr):
@@ -174,7 +174,7 @@ class CliTests(unittest.TestCase):
 
         stderr = io.StringIO()
         with patch(
-            "black_box_optimizer.cli.initialize_application",
+            "sugarsearch.cli.initialize_application",
             side_effect=fake_initialize_application,
         ):
             with redirect_stderr(stderr), redirect_stdout(io.StringIO()):

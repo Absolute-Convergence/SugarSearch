@@ -5,15 +5,15 @@ from __future__ import annotations
 import unittest
 from dataclasses import FrozenInstanceError
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     Direction,
     Objective,
     OptimizationContract,
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.results import (
+from sugarsearch.records import TrialRecord
+from sugarsearch.results import (
     OptimizationResult,
     ParetoFront,
     build_optimization_result,

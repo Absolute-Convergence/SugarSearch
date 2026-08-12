@@ -7,8 +7,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from black_box_optimizer.models import CandidateConfiguration, WorkerSpec
-from black_box_optimizer.runner import _bounded_message, _output_text, execute
+from sugarsearch.models import CandidateConfiguration, WorkerSpec
+from sugarsearch.runner import _bounded_message, _output_text, execute
 
 
 def make_worker_spec(timeout: float = 30.0) -> WorkerSpec:
@@ -30,7 +30,7 @@ class RunnerTests(unittest.TestCase):
         process = Mock(returncode=0)
         process.communicate.return_value = ("output", "")
 
-        with patch("black_box_optimizer.runner.subprocess.Popen") as popen:
+        with patch("sugarsearch.runner.subprocess.Popen") as popen:
             popen.return_value = process
             result = execute(
                 make_worker_spec(),
@@ -66,7 +66,7 @@ class RunnerTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -88,7 +88,7 @@ class RunnerTests(unittest.TestCase):
         process.communicate.return_value = ("", "x" * 2_000)
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -104,7 +104,7 @@ class RunnerTests(unittest.TestCase):
         process.communicate.return_value = ("", "")
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -121,7 +121,7 @@ class RunnerTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -149,7 +149,7 @@ class RunnerTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -174,7 +174,7 @@ class RunnerTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -187,7 +187,7 @@ class RunnerTests(unittest.TestCase):
 
     def test_launch_error_is_bounded_and_has_empty_streams(self) -> None:
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             side_effect=FileNotFoundError("missing worker"),
         ):
             result = execute(
@@ -204,7 +204,7 @@ class RunnerTests(unittest.TestCase):
         process.communicate.return_value = ("résultat", "原因")
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -223,7 +223,7 @@ class RunnerTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             return_value=process,
         ):
             result = execute(
@@ -237,7 +237,7 @@ class RunnerTests(unittest.TestCase):
         # Ctrl+C landing while Popen() itself is still starting the child
         # process, before there's even a process to terminate/kill.
         with patch(
-            "black_box_optimizer.runner.subprocess.Popen",
+            "sugarsearch.runner.subprocess.Popen",
             side_effect=KeyboardInterrupt(),
         ):
             result = execute(

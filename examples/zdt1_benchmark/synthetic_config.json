@@ -1,7 +1,7 @@
 {
   "worker": {
     "command": [
-      "hyperloop-synthetic-worker"
+      "sugarsearch-synthetic-worker"
     ],
     "metrics_argument": "--metrics-out",
     "timeout_seconds": 10.0

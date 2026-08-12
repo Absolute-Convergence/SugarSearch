@@ -17,7 +17,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from black_box_optimizer.metrics import read_trial_metrics
+from sugarsearch.metrics import read_trial_metrics
 from examples.zdt1_benchmark.compare_search_algorithms import (
     _quartiles,
     build_argument_parser,
@@ -25,7 +25,7 @@ from examples.zdt1_benchmark.compare_search_algorithms import (
     mann_whitney_u,
     true_zdt1_hypervolume,
 )
-from hyperloop_workers.synthetic_worker import _NUM_VARIABLES, zdt1
+from sugarsearch_workers.synthetic_worker import _NUM_VARIABLES, zdt1
 
 
 _REPOSITORY = Path(__file__).resolve().parents[1]
@@ -87,7 +87,7 @@ class SyntheticWorkerProcessTests(unittest.TestCase):
                 [
                     sys.executable,
                     "-m",
-                    "hyperloop_workers.synthetic_worker",
+                    "sugarsearch_workers.synthetic_worker",
                     "--x1",
                     "0.25",
                     "--x2",

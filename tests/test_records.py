@@ -7,8 +7,8 @@ import unittest
 from dataclasses import FrozenInstanceError
 from pathlib import Path
 
-from black_box_optimizer.models import CandidateConfiguration
-from black_box_optimizer.records import (
+from sugarsearch.models import CandidateConfiguration
+from sugarsearch.records import (
     TrialRecord,
     build_internal_error_record,
     build_trial_record,

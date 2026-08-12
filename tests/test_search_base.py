@@ -5,8 +5,8 @@ from __future__ import annotations
 import unittest
 from dataclasses import FrozenInstanceError
 
-from black_box_optimizer.models import CandidateConfiguration
-from black_box_optimizer.search.base import ProposalResult
+from sugarsearch.models import CandidateConfiguration
+from sugarsearch.search.base import ProposalResult
 
 
 class ProposalResultTests(unittest.TestCase):

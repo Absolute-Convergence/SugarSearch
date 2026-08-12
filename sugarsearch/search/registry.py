@@ -11,10 +11,10 @@ from __future__ import annotations
 
 from collections.abc import Callable, Mapping
 
-from black_box_optimizer.models import AlgorithmSpec
-from black_box_optimizer.search.base import SearchAlgorithm
-from black_box_optimizer.search.nsga2 import NSGA2
-from black_box_optimizer.search.random_search import RandomSearch
+from sugarsearch.models import AlgorithmSpec
+from sugarsearch.search.base import SearchAlgorithm
+from sugarsearch.search.nsga2 import NSGA2
+from sugarsearch.search.random_search import RandomSearch
 
 AlgorithmFactory = Callable[[AlgorithmSpec], SearchAlgorithm]
 

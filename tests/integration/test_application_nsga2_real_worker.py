@@ -26,8 +26,8 @@ import unittest
 from importlib.util import find_spec
 from pathlib import Path
 
-from black_box_optimizer.application import initialize_application
-from black_box_optimizer.controller import ControllerState
+from sugarsearch.application import initialize_application
+from sugarsearch.controller import ControllerState
 
 if find_spec("torch") is None:
     raise unittest.SkipTest("PyTorch is optional and the Iris worker needs it")

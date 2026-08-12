@@ -6,15 +6,15 @@ from collections.abc import Sequence
 
 import numpy as np
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
     ParameterDefinition,
     ParameterKind,
     ParameterValue,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.base import ProposalResult
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.base import ProposalResult
 
 CandidateKey = tuple[tuple[str, ParameterValue], ...]
 

@@ -1,4 +1,4 @@
-"""Command-line composition for a local Black Box Optimizer run."""
+"""Command-line composition for a local SugarSearch run."""
 
 from __future__ import annotations
 
@@ -7,13 +7,13 @@ import sys
 from collections.abc import Sequence
 from time import monotonic
 
-from black_box_optimizer.application import initialize_application
-from black_box_optimizer.config_loader import ConfigurationError
-from black_box_optimizer.models import Direction, OptimizationContract
-from black_box_optimizer.pareto import is_eligible
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.reporting import ReportingError
-from black_box_optimizer.results import OptimizationResult
+from sugarsearch.application import initialize_application
+from sugarsearch.config_loader import ConfigurationError
+from sugarsearch.models import Direction, OptimizationContract
+from sugarsearch.pareto import is_eligible
+from sugarsearch.records import TrialRecord
+from sugarsearch.reporting import ReportingError
+from sugarsearch.results import OptimizationResult
 
 
 # EMILY ADDITION FOR BEAUTIFICATION PURPOSES
@@ -130,12 +130,12 @@ def _print_best_summary(
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    return _run(argv, prog="python -m black_box_optimizer")
+    return _run(argv, prog="python -m sugarsearch")
 
 
 def installed_main(argv: Sequence[str] | None = None) -> int:
-    """Run through the installed ``hyperloop-optimizer`` command."""
-    return _run(argv, prog="hyperloop-optimizer")
+    """Run through the installed ``sugarsearch`` command."""
+    return _run(argv, prog="sugarsearch")
 
 
 def _run(argv: Sequence[str] | None, *, prog: str) -> int:

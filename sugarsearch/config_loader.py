@@ -9,7 +9,7 @@ from collections.abc import Callable, Iterable
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import TypeVar
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     AlgorithmSpec,
     Direction,
     Objective,
@@ -20,7 +20,7 @@ from black_box_optimizer.models import (
     StopPolicy,
     WorkerSpec,
 )
-from black_box_optimizer.search.registry import ALGORITHM_REGISTRY
+from sugarsearch.search.registry import ALGORITHM_REGISTRY
 
 
 JsonObject = dict[str, object]

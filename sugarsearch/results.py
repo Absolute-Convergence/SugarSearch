@@ -6,9 +6,9 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Literal
 
-from black_box_optimizer.models import OptimizationContract
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.stop_policy import TerminationReason
+from sugarsearch.models import OptimizationContract
+from sugarsearch.records import TrialRecord
+from sugarsearch.stop_policy import TerminationReason
 
 
 ResultStatus = Literal[
@@ -130,7 +130,7 @@ def build_optimization_result(
     termination_reason: TerminationReason,
 ) -> OptimizationResult:
     """Derive the Pareto front and final status from authoritative evidence."""
-    from black_box_optimizer.pareto import build_pareto_front
+    from sugarsearch.pareto import build_pareto_front
 
     history_snapshot = tuple(history)
     pareto_front = build_pareto_front(history_snapshot, contract)

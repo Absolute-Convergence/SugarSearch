@@ -16,12 +16,12 @@ from pathlib import Path
 from types import MappingProxyType
 from typing import Literal
 
-from black_box_optimizer.metrics import (
+from sugarsearch.metrics import (
     MetricsFormatError,
     NonFiniteMetricError,
     read_trial_metrics,
 )
-from black_box_optimizer.models import CandidateConfiguration, ParameterValue
+from sugarsearch.models import CandidateConfiguration, ParameterValue
 
 # These are the only execution and metrics states we expect to see
 # Anything else means something upstream has gone wrong

@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import unittest
 
-from black_box_optimizer.candidate_validation import (
+from sugarsearch.candidate_validation import (
     CandidateValidationError,
     validate_candidate,
 )
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     Direction,
     Objective,

@@ -21,8 +21,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.models import (
+from sugarsearch.history import TrialHistory
+from sugarsearch.models import (
     AlgorithmSpec,
     Direction,
     Objective,
@@ -31,9 +31,9 @@ from black_box_optimizer.models import (
     ParameterKind,
     StopPolicy,
 )
-from black_box_optimizer.records import build_trial_record
-from black_box_optimizer.search.registry import create_algorithm
-from black_box_optimizer.stop_policy import StopPolicyEvaluator
+from sugarsearch.records import build_trial_record
+from sugarsearch.search.registry import create_algorithm
+from sugarsearch.stop_policy import StopPolicyEvaluator
 
 
 def make_contract() -> OptimizationContract:

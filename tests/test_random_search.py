@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     Direction,
     Objective,
@@ -13,8 +13,8 @@ from black_box_optimizer.models import (
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.random_search import RandomSearch, candidate_key
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.random_search import RandomSearch, candidate_key
 
 
 def make_contract(*parameters: ParameterDefinition) -> OptimizationContract:
@@ -386,7 +386,7 @@ class RandomSearchExhaustionTests(unittest.TestCase):
         algorithm = RandomSearch(seed=1)
 
         with patch(
-            "black_box_optimizer.search.random_search._sample_value",
+            "sugarsearch.search.random_search._sample_value",
             return_value=0.5,
         ):
             result = algorithm.propose(contract, history)

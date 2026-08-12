@@ -4,7 +4,7 @@ prune tests
 prune tools
 
 exclude AGENTS.md
-exclude Hyperloop.py
+exclude SugarSearch.py
 exclude KNOWN_ISSUES.md
 exclude config.json
 exclude saved_configs/config.json

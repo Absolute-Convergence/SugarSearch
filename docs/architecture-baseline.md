@@ -1,8 +1,8 @@
-# Black Box Optimizer Architecture Baseline
+# SugarSearch Architecture Baseline
 
 ## Purpose
 
-Black Box Optimizer is a local Python 3.13.14 application. It will optimize an
+SugarSearch is a local Python 3.13.14 application. It optimizes an
 external worker without importing or inspecting the worker's internal code.
 The worker receives candidate parameters through command-line flags and writes
 metrics to a trial-specific, one-row CSV file.
@@ -86,7 +86,7 @@ It returns:
 - `validation_loss` (`minimize`)
 - `training_time_seconds` (`minimize`)
 
-The worker remains outside `black_box_optimizer`. PyTorch may support this
+The worker remains outside `sugarsearch`. PyTorch may support this
 example and its tests but must not be imported by, or become a runtime
 dependency of, the optimizer package. Whether each component is currently
 implemented belongs in `README.md`, not in this stable contract document.

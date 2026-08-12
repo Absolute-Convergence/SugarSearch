@@ -31,15 +31,15 @@ from typing import NamedTuple
 
 import numpy as np
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
     ParameterKind,
 )
-from black_box_optimizer.pareto import build_pareto_front, is_eligible
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.base import ProposalResult
-from black_box_optimizer.search.random_search import (
+from sugarsearch.pareto import build_pareto_front, is_eligible
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.base import ProposalResult
+from sugarsearch.search.random_search import (
     _finite_space_size,
     _sample_value,
     candidate_key,

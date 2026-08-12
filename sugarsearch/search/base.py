@@ -6,11 +6,11 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Literal, Protocol
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
 )
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.records import TrialRecord
 
 # These are the only results a search algorithm can give us
 ProposalStatus = Literal[

@@ -3,8 +3,8 @@ requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hyperloop-optimizer"
-version = "0.1.1"
+name = "sugarsearch"
+version = "0.0.1.0"
 description = "A local multi-objective black-box optimizer for opaque command-line workers"
 readme = "README.md"
 requires-python = ">=3.13.14,<3.14"
@@ -36,15 +36,16 @@ dependencies = [
 ]
 
 [project.scripts]
-hyperloop-optimizer = "black_box_optimizer.cli:installed_main"
-hyperloop-synthetic-worker = "hyperloop_workers.synthetic_worker:main"
+sugarsearch = "sugarsearch.cli:installed_main"
+sugarsearch-synthetic-worker = "sugarsearch_workers.synthetic_worker:main"
 
 [project.urls]
-Homepage = "https://github.com/Absolute-Convergence/CSCI-3038-Final_Project"
-Issues = "https://github.com/Absolute-Convergence/CSCI-3038-Final_Project/issues"
-Source = "https://github.com/Absolute-Convergence/CSCI-3038-Final_Project"
+Homepage = "https://github.com/Absolute-Convergence/SugarSearch"
+Issues = "https://github.com/Absolute-Convergence/SugarSearch/issues"
+Source = "https://github.com/Absolute-Convergence/SugarSearch"
+Upstream = "https://github.com/Absolute-Convergence/CSCI-3038-Final_Project"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["black_box_optimizer*", "hyperloop_workers*"]
+include = ["sugarsearch*", "sugarsearch_workers*"]
 exclude = ["examples*", "tests*"]

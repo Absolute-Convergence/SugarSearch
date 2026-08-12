@@ -6,15 +6,15 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-from black_box_optimizer.config_loader import load_configuration
-from black_box_optimizer.controller import ApplicationController
-from black_box_optimizer.models import ProjectConfiguration
-from black_box_optimizer.persistence import RunDirectory, create_run_directory
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.reporting import Reporter
-from black_box_optimizer.results import OptimizationResult
-from black_box_optimizer.search.registry import create_algorithm
-from black_box_optimizer.stop_policy import StopPolicyEvaluator
+from sugarsearch.config_loader import load_configuration
+from sugarsearch.controller import ApplicationController
+from sugarsearch.models import ProjectConfiguration
+from sugarsearch.persistence import RunDirectory, create_run_directory
+from sugarsearch.records import TrialRecord
+from sugarsearch.reporting import Reporter
+from sugarsearch.results import OptimizationResult
+from sugarsearch.search.registry import create_algorithm
+from sugarsearch.stop_policy import StopPolicyEvaluator
 
 
 @dataclass(frozen=True, slots=True)

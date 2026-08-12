@@ -16,16 +16,16 @@ from typing import Protocol
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     Direction,
     Objective,
     ParameterKind,
     ProjectConfiguration,
 )
-from black_box_optimizer.pareto import is_eligible
-from black_box_optimizer.persistence import RunDirectory
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.results import OptimizationResult
+from sugarsearch.pareto import is_eligible
+from sugarsearch.persistence import RunDirectory
+from sugarsearch.records import TrialRecord
+from sugarsearch.results import OptimizationResult
 
 
 class ReportingError(RuntimeError):

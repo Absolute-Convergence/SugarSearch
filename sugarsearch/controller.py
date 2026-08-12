@@ -13,30 +13,30 @@ from enum import StrEnum
 from pathlib import Path
 from time import monotonic
 
-from black_box_optimizer import runner
-from black_box_optimizer.candidate_validation import (
+from sugarsearch import runner
+from sugarsearch.candidate_validation import (
     CandidateValidationError,
     validate_candidate,
 )
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.models import (
+from sugarsearch.history import TrialHistory
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
     WorkerSpec,
 )
-from black_box_optimizer.persistence import CheckpointError, RunDirectory
-from black_box_optimizer.records import (
+from sugarsearch.persistence import CheckpointError, RunDirectory
+from sugarsearch.records import (
     TrialRecord,
     build_internal_error_record,
     build_trial_record,
 )
-from black_box_optimizer.reporting import ReportingError, ResultReporter
-from black_box_optimizer.results import (
+from sugarsearch.reporting import ReportingError, ResultReporter
+from sugarsearch.results import (
     OptimizationResult,
     build_optimization_result,
 )
-from black_box_optimizer.search.base import SearchAlgorithm
-from black_box_optimizer.stop_policy import (
+from sugarsearch.search.base import SearchAlgorithm
+from sugarsearch.stop_policy import (
     StopPolicyEvaluator,
     TerminationReason,
 )

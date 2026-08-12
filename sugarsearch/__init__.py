@@ -1,10 +1,10 @@
-"""Public contracts for Black Box Optimizer."""
+"""Public contracts for SugarSearch."""
 
-from black_box_optimizer.config_loader import (
+from sugarsearch.config_loader import (
     ConfigurationError,
     load_configuration,
 )
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     AlgorithmSpec,
     CandidateConfiguration,
     Direction,
@@ -16,7 +16,7 @@ from black_box_optimizer.models import (
     StopPolicy,
     WorkerSpec,
 )
-from black_box_optimizer.results import OptimizationResult, ParetoFront
+from sugarsearch.results import OptimizationResult, ParetoFront
 
 __all__ = [
     "AlgorithmSpec",

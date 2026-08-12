@@ -1,57 +1,21 @@
 {
   "worker": {
-    "command": [
-      "/Users/emilytew/Desktop/Projects/CSCI-3038-Final_Project/.venv/bin/python3",
-      "/Users/emilytew/Desktop/Projects/CSCI-3038-Final_Project/examples/iris_torch/iris_worker.py"
-    ],
+    "command": ["sugarsearch-synthetic-worker"],
     "metrics_argument": "--metrics-out",
-    "timeout_seconds": 120.0
+    "timeout_seconds": 10.0
   },
   "optimization": {
     "parameters": [
-      {
-        "name": "learning_rate",
-        "kind": "float",
-        "minimum": 0.0001,
-        "maximum": 0.1
-      },
-      {
-        "name": "hidden_size",
-        "kind": "integer",
-        "minimum": 4,
-        "maximum": 128
-      },
-      {
-        "name": "epochs",
-        "kind": "integer",
-        "minimum": 5,
-        "maximum": 100
-      },
-      {
-        "name": "batch_size",
-        "kind": "categorical",
-        "choices": [
-          8,
-          16,
-          32
-        ]
-      }
+      {"name": "x1", "kind": "float", "minimum": 0.0, "maximum": 1.0},
+      {"name": "x2", "kind": "float", "minimum": 0.0, "maximum": 1.0},
+      {"name": "x3", "kind": "float", "minimum": 0.0, "maximum": 1.0},
+      {"name": "x4", "kind": "float", "minimum": 0.0, "maximum": 1.0}
     ],
     "objectives": [
-      {
-        "metric_name": "validation_accuracy",
-        "direction": "maximize"
-      },
-      {
-        "metric_name": "training_time_seconds",
-        "direction": "minimize"
-      }
+      {"metric_name": "f1", "direction": "minimize"},
+      {"metric_name": "f2", "direction": "minimize"}
     ]
   },
-  "algorithm": {
-    "name": "random_search"
-  },
-  "stop_policy": {
-    "max_trials": 20
-  }
+  "algorithm": {"name": "random_search", "seed": 42},
+  "stop_policy": {"max_trials": 4}
 }

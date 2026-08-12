@@ -15,7 +15,7 @@ if find_spec("torch") is None:
 
 import torch
 
-from black_box_optimizer.metrics import read_trial_metrics
+from sugarsearch.metrics import read_trial_metrics
 from examples.iris_torch.iris_worker import (
     IrisClassifier,
     load_iris_data,

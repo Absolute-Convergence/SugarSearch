@@ -40,16 +40,15 @@ from pathlib import Path
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
 
-sys.path.insert(
-    0, str(Path("/Users/emilytew/Desktop/Projects/CSCI-3038-Final_Project"))
-)
+_REPOSITORY = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(_REPOSITORY))
 
-from black_box_optimizer import runner
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.pareto import build_pareto_front
-from black_box_optimizer.records import build_trial_record
-from black_box_optimizer.search.random_search import RandomSearch
-from black_box_optimizer.search.nsga2 import NSGA2 as NSGA2Current
+from sugarsearch import runner
+from sugarsearch.history import TrialHistory
+from sugarsearch.pareto import build_pareto_front
+from sugarsearch.records import build_trial_record
+from sugarsearch.search.random_search import RandomSearch
+from sugarsearch.search.nsga2 import NSGA2 as NSGA2Current
 from examples.zdt1_benchmark import compare_search_algorithms as bench
 from examples.zdt1_benchmark.legacy_algorithms.nsga2_original import (
     NSGA2Original,
@@ -58,16 +57,10 @@ from examples.zdt1_benchmark.legacy_algorithms.nsga2_elitism_only import (
     NSGA2ElitismOnly,
 )
 
-_DESKTOP = Path("/Users/emilytew/Desktop")
+_DESKTOP = Path.home() / "Desktop"
 _TRIALS_PER_RUN = 500
 _DETERMINISTIC_SEEDS = list(range(20))  # 0..19, matching the reused data
-_OUTPUT_ROOT = (
-    Path("/Users/emilytew/Desktop/Projects/CSCI-3038-Final_Project")
-    / "examples"
-    / "zdt1_benchmark"
-    / "legacy_algorithms"
-    / "evolution_comparison_results"
-)
+_OUTPUT_ROOT = Path(__file__).resolve().parent / "evolution_comparison_results"
 
 _VERSIONS = {
     "original": NSGA2Original,

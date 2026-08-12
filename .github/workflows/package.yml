@@ -28,7 +28,7 @@ jobs:
       - name: Upload validated distributions
         uses: actions/upload-artifact@v7
         with:
-          name: hyperloop-distributions
+          name: sugarsearch-distributions
           path: dist/*
           if-no-files-found: error
           retention-days: 7
@@ -51,7 +51,7 @@ jobs:
       - name: Download validated distributions
         uses: actions/download-artifact@v8
         with:
-          name: hyperloop-distributions
+          name: sugarsearch-distributions
           path: dist
       - name: Install the exact release wheel
         run: >-
@@ -69,6 +69,6 @@ jobs:
         run: python tools/check_monoliths.py
       - name: Run installed synthetic smoke test
         run: >-
-          hyperloop-optimizer
+          sugarsearch
           examples/zdt1_benchmark/synthetic_config.json
-          --output-dir "${{ runner.temp }}/hyperloop-runs"
+          --output-dir "${{ runner.temp }}/sugarsearch-runs"

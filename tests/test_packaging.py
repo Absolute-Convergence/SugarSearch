@@ -1,4 +1,4 @@
-"""Focused checks for the distributable Hyperloop package boundary."""
+"""Focused checks for the distributable SugarSearch package boundary."""
 
 from __future__ import annotations
 
@@ -19,15 +19,15 @@ class PackagingMetadataTests(unittest.TestCase):
     def test_distribution_identity_and_installed_command(self) -> None:
         project = self.document["project"]
 
-        self.assertEqual(project["name"], "hyperloop-optimizer")
-        self.assertEqual(project["version"], "0.1.1")
+        self.assertEqual(project["name"], "sugarsearch")
+        self.assertEqual(project["version"], "0.0.1.0")
         self.assertEqual(
-            project["scripts"]["hyperloop-optimizer"],
-            "black_box_optimizer.cli:installed_main",
+            project["scripts"]["sugarsearch"],
+            "sugarsearch.cli:installed_main",
         )
         self.assertEqual(
-            project["scripts"]["hyperloop-synthetic-worker"],
-            "hyperloop_workers.synthetic_worker:main",
+            project["scripts"]["sugarsearch-synthetic-worker"],
+            "sugarsearch_workers.synthetic_worker:main",
         )
 
     def test_core_dependencies_exclude_worker_and_gui_frameworks(self) -> None:
@@ -44,7 +44,7 @@ class PackagingMetadataTests(unittest.TestCase):
 
         self.assertEqual(
             discovery["include"],
-            ["black_box_optimizer*", "hyperloop_workers*"],
+            ["sugarsearch*", "sugarsearch_workers*"],
         )
         self.assertIn("examples*", discovery["exclude"])
 

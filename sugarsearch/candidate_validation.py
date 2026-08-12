@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     OptimizationContract,
     ParameterDefinition,

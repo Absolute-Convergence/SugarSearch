@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     AlgorithmSpec,
     Direction,
     Objective,
@@ -21,16 +21,16 @@ from black_box_optimizer.models import (
     StopPolicy,
     WorkerSpec,
 )
-from black_box_optimizer.persistence import create_run_directory
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.reporting import (
+from sugarsearch.persistence import create_run_directory
+from sugarsearch.records import TrialRecord
+from sugarsearch.reporting import (
     Reporter,
     ReportingError,
     _grid_shape,
     _label_extreme_points,
     _pareto_plot,
 )
-from black_box_optimizer.results import build_optimization_result
+from sugarsearch.results import build_optimization_result
 
 
 def make_configuration() -> ProjectConfiguration:
@@ -225,7 +225,7 @@ class ReporterTests(unittest.TestCase):
             return real_replace(source, destination)
 
         with patch(
-            "black_box_optimizer.reporting.os.replace",
+            "sugarsearch.reporting.os.replace",
             side_effect=fail_summary,
         ):
             with self.assertRaisesRegex(ReportingError, "summary.txt"):
@@ -252,7 +252,7 @@ class ReporterTests(unittest.TestCase):
             return real_replace(source, destination)
 
         with patch(
-            "black_box_optimizer.reporting.os.replace",
+            "sugarsearch.reporting.os.replace",
             side_effect=fail_summary,
         ):
             with self.assertRaises(ReportingError):

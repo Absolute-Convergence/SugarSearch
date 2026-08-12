@@ -9,8 +9,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Literal
 
-from black_box_optimizer.models import OptimizationContract, StopPolicy
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.models import OptimizationContract, StopPolicy
+from sugarsearch.records import TrialRecord
 
 # These are the only termination reasons recognized by the project
 TerminationReason = Literal[
@@ -158,7 +158,7 @@ class StopPolicyEvaluator:
         # module level here would be circular. results.py's own
         # build_optimization_result() already solves the same problem
         # the same way.
-        from black_box_optimizer.pareto import is_eligible
+        from sugarsearch.pareto import is_eligible
 
         trial_count = len(history)
         failure_count = sum(

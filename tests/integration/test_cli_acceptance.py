@@ -26,7 +26,7 @@ class CliAcceptanceTests(unittest.TestCase):
                 [
                     sys.executable,
                     "-m",
-                    "black_box_optimizer",
+                    "sugarsearch",
                     str(configuration_path),
                     "--output-dir",
                     str(output_directory),

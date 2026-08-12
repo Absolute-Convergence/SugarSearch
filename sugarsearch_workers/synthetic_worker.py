@@ -23,7 +23,7 @@ plots by eye. It also runs almost instantly, making it practical
 to compare thousands of trials across many random seeds HUZZAH!
 
 This file intentionally lives in a separate top-level package rather than
-inside black_box_optimizer. It is distributed with Hyperloop for immediate
+inside sugarsearch. It is distributed with SugarSearch for immediate
 smoke tests while the optimizer continues to treat it exactly like any other
 opaque external worker program.
 

@@ -10,7 +10,7 @@ from unittest.mock import Mock, patch
 
 import numpy as np
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     CandidateConfiguration,
     Direction,
     Objective,
@@ -18,8 +18,8 @@ from black_box_optimizer.models import (
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.search.nsga2 import (
+from sugarsearch.records import TrialRecord
+from sugarsearch.search.nsga2 import (
     _MAX_DUPLICATE_ATTEMPTS,
     NSGA2,
     _RankedIndividual,
@@ -535,7 +535,7 @@ class MutateTests(unittest.TestCase):
         generator = np.random.default_rng(0)
 
         with patch(
-            "black_box_optimizer.search.nsga2._sample_value",
+            "sugarsearch.search.nsga2._sample_value",
             return_value="sampled",
         ) as mock_sample:
             mutated = _mutate(
@@ -644,7 +644,7 @@ class DuplicateHandlingTests(unittest.TestCase):
         forbidden = {(("x", 0),)}
 
         with patch(
-            "black_box_optimizer.search.nsga2._sample_value",
+            "sugarsearch.search.nsga2._sample_value",
             return_value=0,
         ):
             result = _sample_new_random_candidate(
@@ -666,11 +666,11 @@ class DuplicateHandlingTests(unittest.TestCase):
 
         with (
             patch(
-                "black_box_optimizer.search.nsga2._crossover",
+                "sugarsearch.search.nsga2._crossover",
                 return_value={"x": 7},
             ),
             patch(
-                "black_box_optimizer.search.nsga2._mutate",
+                "sugarsearch.search.nsga2._mutate",
                 side_effect=lambda parameters, *_args, **_kwargs: dict(
                     parameters
                 ),
@@ -757,7 +757,7 @@ class NSGA2QueueAndBreedingTests(unittest.TestCase):
             )
 
         with patch(
-            "black_box_optimizer.search.nsga2._mutate",
+            "sugarsearch.search.nsga2._mutate",
             side_effect=lambda parameters, *_args, **_kwargs: dict(
                 parameters
             ),
@@ -870,7 +870,7 @@ class NSGA2ExhaustionTests(unittest.TestCase):
         algorithm = NSGA2(seed=1)
 
         with patch(
-            "black_box_optimizer.search.nsga2._sample_value",
+            "sugarsearch.search.nsga2._sample_value",
             return_value=5,
         ):
             result = algorithm.propose(contract, [])

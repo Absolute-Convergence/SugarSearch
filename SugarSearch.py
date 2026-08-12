@@ -1,10 +1,10 @@
 # =============================================================================
-# HyperLoop
+# SugarSearch
 # =============================================================================
 #
-# Graphical Configuration Tool for the Black Box Optimizer
+# Graphical configuration tool for SugarSearch
 #
-# HyperLoop provides a Tkinter-based interface for creating, validating, and
+# SugarSearch provides a Tkinter-based interface for creating, validating, and
 # launching optimization runs without manually editing JSON configuration files.
 # The application builds a valid optimizer configuration, saves it to disk,
 # and launches the optimizer using its public Python API.
@@ -20,8 +20,8 @@
 #
 # Architecture
 # ------------
-# HyperLoop is intentionally a thin front-end over the optimizer library.
-# All optimization logic remains inside the black_box_optimizer package.
+# SugarSearch is intentionally a thin front-end over the optimizer library.
+# All optimization logic remains inside the sugarsearch package.
 # This application is responsible only for:
 #
 #   1. Collecting user input
@@ -50,10 +50,10 @@ import json
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
-from black_box_optimizer.application import initialize_application
+from sugarsearch.application import initialize_application
 
-import hyperloop_help
-from hyperloop_theme import (
+import sugarsearch_help
+from sugarsearch_theme import (
     _PAGE,
     _SURFACE,
     _PRIMARY_INK,
@@ -127,10 +127,10 @@ def set_icon(relative_img_path):
 class ConfigApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("HyperLoop")
+        self.root.title("SugarSearch")
         self.root.geometry("620x775")
         _apply_theme(self.root)
-        self.app_icon = set_icon(os.path.join("assets", "img", "HyperLoop.png"))
+        self.app_icon = set_icon(os.path.join("assets", "img", "SugarSearch.png"))
         if self.app_icon:
             self.root.iconphoto(False, self.app_icon)
         self.stop_requested = threading.Event()
@@ -148,7 +148,7 @@ class ConfigApp:
         title_col.pack(side="left", anchor="w")
 
         ttk.Label(
-            title_col, text="HyperLoop", style="Header.TLabel"
+            title_col, text="SugarSearch", style="Header.TLabel"
         ).pack(anchor="w")
         ttk.Label(
             title_col,
@@ -162,14 +162,14 @@ class ConfigApp:
         ttk.Button(
             help_col,
             text="Instructions",
-            command=lambda: hyperloop_help.show_instructions(
+            command=lambda: sugarsearch_help.show_instructions(
                 self.root, self.app_icon
             ),
         ).pack(anchor="e")
         ttk.Button(
             help_col,
             text="Special Mr. Smith Instructions",
-            command=lambda: hyperloop_help.show_mr_smith_instructions(
+            command=lambda: sugarsearch_help.show_mr_smith_instructions(
                 self.root, self.app_icon
             ),
         ).pack(anchor="e", pady=(4, 0))
@@ -974,7 +974,7 @@ class ConfigApp:
 
 #================================================
 # Creates the main Tkinter window
-# Initializes the Hyperloop application
+# Initializes the SugarSearch application
 # Loops until the user closes the application 
 # ===============================================
 

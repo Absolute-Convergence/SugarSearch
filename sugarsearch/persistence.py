@@ -10,9 +10,9 @@ from collections.abc import Sequence
 from datetime import datetime
 from pathlib import Path
 
-from black_box_optimizer.models import OptimizationContract
-from black_box_optimizer.pareto import is_eligible
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.models import OptimizationContract
+from sugarsearch.pareto import is_eligible
+from sugarsearch.records import TrialRecord
 
 _TRIAL_DIRECTORY_DIGITS = 4
 

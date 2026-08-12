@@ -1,7 +1,7 @@
 """
 compare_search_algorithms.py
 
-Runs both search algos against Hyperloops synthetic ZDT1 worker across
+Runs both search algos against SugarSearchs synthetic ZDT1 worker across
 many multiple seeds magoo then reports the hypervolume each one reaches!
 
 Every trial still launches synthetic_worker.py through runner.py as a real
@@ -34,9 +34,9 @@ from pathlib import Path
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
 
-from black_box_optimizer import runner
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.models import (
+from sugarsearch import runner
+from sugarsearch.history import TrialHistory
+from sugarsearch.models import (
     AlgorithmSpec,
     Direction,
     Objective,
@@ -45,10 +45,10 @@ from black_box_optimizer.models import (
     ParameterKind,
     WorkerSpec,
 )
-from black_box_optimizer.pareto import build_pareto_front
-from black_box_optimizer.records import build_trial_record
-from black_box_optimizer.search.registry import create_algorithm
-from hyperloop_workers import synthetic_worker
+from sugarsearch.pareto import build_pareto_front
+from sugarsearch.records import build_trial_record
+from sugarsearch.search.registry import create_algorithm
+from sugarsearch_workers import synthetic_worker
 
 _WORKER_PATH = Path(synthetic_worker.__file__).resolve()
 

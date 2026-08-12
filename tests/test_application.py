@@ -9,8 +9,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from black_box_optimizer.application import initialize_application
-from black_box_optimizer.controller import ControllerState
+from sugarsearch.application import initialize_application
+from sugarsearch.controller import ControllerState
 
 
 _WORKER = Path(__file__).parent / "fixtures" / "cli_worker.py"

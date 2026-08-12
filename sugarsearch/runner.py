@@ -6,7 +6,7 @@ import subprocess
 import time
 from typing import Literal
 
-from black_box_optimizer.models import CandidateConfiguration, WorkerSpec
+from sugarsearch.models import CandidateConfiguration, WorkerSpec
 
 
 _TERMINATION_GRACE_SECONDS = 2.0

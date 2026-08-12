@@ -1,2 +1,2 @@
-# Optional external Iris example worker only; not required by Hyperloop.
+# Optional external Iris example worker only; not required by SugarSearch.
 torch>=2.0

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import unittest
 
-from black_box_optimizer.models import AlgorithmSpec
-from black_box_optimizer.search.random_search import RandomSearch
-from black_box_optimizer.search.registry import (
+from sugarsearch.models import AlgorithmSpec
+from sugarsearch.search.random_search import RandomSearch
+from sugarsearch.search.registry import (
     ALGORITHM_REGISTRY,
     UnknownAlgorithmError,
     create_algorithm,

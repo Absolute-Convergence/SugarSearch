@@ -6,7 +6,7 @@ import math
 import unittest
 from dataclasses import FrozenInstanceError
 
-from black_box_optimizer import (
+from sugarsearch import (
     AlgorithmSpec,
     CandidateConfiguration,
     Direction,

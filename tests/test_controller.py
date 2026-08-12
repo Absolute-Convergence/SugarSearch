@@ -7,11 +7,11 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from black_box_optimizer.controller import (
+from sugarsearch.controller import (
     ApplicationController,
     ControllerState,
 )
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     AlgorithmSpec,
     CandidateConfiguration,
     Direction,
@@ -22,14 +22,14 @@ from black_box_optimizer.models import (
     StopPolicy,
     WorkerSpec,
 )
-from black_box_optimizer.persistence import (
+from sugarsearch.persistence import (
     CheckpointError,
     create_run_directory,
 )
-from black_box_optimizer.reporting import ReportingError
-from black_box_optimizer.search.base import ProposalResult, SearchAlgorithm
-from black_box_optimizer.search.registry import create_algorithm
-from black_box_optimizer.stop_policy import StopDecision, StopPolicyEvaluator
+from sugarsearch.reporting import ReportingError
+from sugarsearch.search.base import ProposalResult, SearchAlgorithm
+from sugarsearch.search.registry import create_algorithm
+from sugarsearch.stop_policy import StopDecision, StopPolicyEvaluator
 
 
 def make_contract() -> OptimizationContract:
@@ -191,7 +191,7 @@ class ControllerHappyPathTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(),
         ):
             result = controller.run()
@@ -226,7 +226,7 @@ class ControllerHappyPathTests(unittest.TestCase):
 
         seen_paths: list[Path] = []
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(metrics_by_path=seen_paths),
         ):
             controller.run()
@@ -263,7 +263,7 @@ class ControllerHappyPathTests(unittest.TestCase):
             }
 
         with patch(
-            "black_box_optimizer.runner.execute", side_effect=_failing_execute
+            "sugarsearch.runner.execute", side_effect=_failing_execute
         ):
             result = controller.run()
 
@@ -301,7 +301,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(),
         ):
             result = controller.run()
@@ -329,11 +329,11 @@ class ControllerTerminationReasonTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(),
         ):
             with patch(
-                "black_box_optimizer.controller.RunDirectory.checkpoint",
+                "sugarsearch.controller.RunDirectory.checkpoint",
                 side_effect=CheckpointError("disk full"),
             ):
                 result = controller.run()
@@ -373,7 +373,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
             side_effect=fail_second_trial_directory,
         ):
             with patch(
-                "black_box_optimizer.runner.execute",
+                "sugarsearch.runner.execute",
                 side_effect=_fake_completed_execute(),
             ):
                 result = controller.run()
@@ -415,7 +415,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
             self.reporter,
         )
 
-        with patch("black_box_optimizer.runner.execute") as fake_execute:
+        with patch("sugarsearch.runner.execute") as fake_execute:
             result = controller.run()
             fake_execute.assert_not_called()
 
@@ -433,7 +433,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
             self.reporter,
         )
 
-        with patch("black_box_optimizer.runner.execute") as fake_execute:
+        with patch("sugarsearch.runner.execute") as fake_execute:
             result = controller.run()
 
         fake_execute.assert_not_called()
@@ -482,7 +482,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
         }
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             return_value=cancelled_observation,
         ):
             result = controller.run()
@@ -521,7 +521,7 @@ class ControllerTerminationReasonTests(unittest.TestCase):
             raise KeyboardInterrupt
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_interrupted_execute,
         ):
             # Runner owns child shutdown and normally returns a cancelled
@@ -556,7 +556,7 @@ class ControllerInternalErrorTests(unittest.TestCase):
         controller = self.make_controller()
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=RuntimeError("runner contract broke"),
         ):
             result = controller.run()
@@ -580,11 +580,11 @@ class ControllerInternalErrorTests(unittest.TestCase):
         controller = self.make_controller()
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(),
         ):
             with patch(
-                "black_box_optimizer.controller.build_trial_record",
+                "sugarsearch.controller.build_trial_record",
                 side_effect=KeyError("runtime_seconds"),
             ):
                 result = controller.run()
@@ -655,7 +655,7 @@ class ControllerFinalizeTests(unittest.TestCase):
         )
 
         with patch(
-            "black_box_optimizer.runner.execute",
+            "sugarsearch.runner.execute",
             side_effect=_fake_completed_execute(),
         ):
             with self.assertRaises(KeyboardInterrupt):

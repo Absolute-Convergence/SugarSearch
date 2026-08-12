@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from black_box_optimizer import (
+from sugarsearch import (
     ConfigurationError,
     Direction,
     ParameterKind,
@@ -222,7 +222,7 @@ class ConfigurationLoaderTests(unittest.TestCase):
 
         self.assertEqual(
             configuration.worker.command,
-            ("hyperloop-synthetic-worker",),
+            ("sugarsearch-synthetic-worker",),
         )
         self.assertEqual(
             tuple(

@@ -24,19 +24,19 @@ from datetime import datetime
 from pathlib import Path
 from unittest.mock import patch
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     Direction,
     Objective,
     OptimizationContract,
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.persistence import (
+from sugarsearch.persistence import (
     CheckpointError,
     RunDirectory,
     create_run_directory,
 )
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.records import TrialRecord
 
 
 def make_contract() -> OptimizationContract:
@@ -116,11 +116,11 @@ class CreateRunDirectoryTests(unittest.TestCase):
 
         with (
             patch(
-                "black_box_optimizer.persistence.secrets.token_hex",
+                "sugarsearch.persistence.secrets.token_hex",
                 return_value="fixed",
             ),
             patch(
-                "black_box_optimizer.persistence.datetime"
+                "sugarsearch.persistence.datetime"
             ) as mock_datetime,
         ):
             mock_datetime.now.return_value = fixed_now
@@ -156,7 +156,7 @@ class TrialPathTests(unittest.TestCase):
 
     def test_trial_directory_failure_is_a_checkpoint_error(self) -> None:
         with patch(
-            "black_box_optimizer.persistence.Path.mkdir",
+            "sugarsearch.persistence.Path.mkdir",
             side_effect=OSError("permission denied"),
         ):
             with self.assertRaisesRegex(CheckpointError, "trial_id 3"):
@@ -195,7 +195,7 @@ class DiagnosticPersistenceTests(unittest.TestCase):
 
     def test_failure_is_checkpoint_error_and_cleans_temp_file(self) -> None:
         with patch(
-            "black_box_optimizer.persistence.os.replace",
+            "sugarsearch.persistence.os.replace",
             side_effect=OSError("disk full"),
         ):
             with self.assertRaisesRegex(CheckpointError, "trial_id 4"):
@@ -206,7 +206,7 @@ class DiagnosticPersistenceTests(unittest.TestCase):
 
     def test_trial_directory_failure_is_translated(self) -> None:
         with patch(
-            "black_box_optimizer.persistence.Path.mkdir",
+            "sugarsearch.persistence.Path.mkdir",
             side_effect=OSError("permission denied"),
         ):
             with self.assertRaisesRegex(CheckpointError, "trial_id 4"):
@@ -214,7 +214,7 @@ class DiagnosticPersistenceTests(unittest.TestCase):
 
     def test_non_oserror_diagnostic_failure_is_translated(self) -> None:
         with patch(
-            "black_box_optimizer.persistence._atomic_write_text",
+            "sugarsearch.persistence._atomic_write_text",
             side_effect=ValueError("encoding boundary failed"),
         ):
             with self.assertRaisesRegex(
@@ -382,7 +382,7 @@ class CheckpointTests(unittest.TestCase):
         second = make_record(1, metrics={"accuracy": 0.6, "loss": 0.4})
 
         with patch(
-            "black_box_optimizer.persistence.os.replace",
+            "sugarsearch.persistence.os.replace",
             side_effect=OSError("disk full"),
         ):
             with self.assertRaises(CheckpointError):
@@ -399,7 +399,7 @@ class CheckpointTests(unittest.TestCase):
         record = make_record(0, metrics={"accuracy": 0.5, "loss": 0.5})
 
         with patch(
-            "black_box_optimizer.persistence.os.replace",
+            "sugarsearch.persistence.os.replace",
             side_effect=OSError("disk full"),
         ):
             with self.assertRaises(CheckpointError):
@@ -435,7 +435,7 @@ class CheckpointTests(unittest.TestCase):
         record = make_record(5, metrics={"accuracy": 0.5, "loss": 0.5})
 
         with patch(
-            "black_box_optimizer.persistence.os.replace",
+            "sugarsearch.persistence.os.replace",
             side_effect=OSError("disk full"),
         ):
             with self.assertRaisesRegex(CheckpointError, "trial_id: 5"):
@@ -445,7 +445,7 @@ class CheckpointTests(unittest.TestCase):
         # Empty history means there is no trial identifier to report
         # this still needs to fail cleanly instead of causing another error
         with patch(
-            "black_box_optimizer.persistence.os.replace",
+            "sugarsearch.persistence.os.replace",
             side_effect=OSError("disk full"),
         ):
             with self.assertRaises(CheckpointError):

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import unittest
 
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.history import TrialHistory
+from sugarsearch.records import TrialRecord
 
 
 def make_trial_record(trial_id: int) -> TrialRecord:

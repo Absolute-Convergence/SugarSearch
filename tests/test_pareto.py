@@ -4,20 +4,20 @@ from __future__ import annotations
 
 import unittest
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     Direction,
     Objective,
     OptimizationContract,
     ParameterDefinition,
     ParameterKind,
 )
-from black_box_optimizer.pareto import (
+from sugarsearch.pareto import (
     build_pareto_front,
     dominates,
     is_eligible,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.results import ParetoFront
+from sugarsearch.records import TrialRecord
+from sugarsearch.results import ParetoFront
 
 
 def make_contract() -> OptimizationContract:

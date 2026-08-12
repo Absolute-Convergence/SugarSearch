@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from black_box_optimizer.records import TrialRecord
+from sugarsearch.records import TrialRecord
 
 
 class TrialHistory:

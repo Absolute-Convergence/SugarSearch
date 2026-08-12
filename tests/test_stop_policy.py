@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 from dataclasses import FrozenInstanceError
 
-from black_box_optimizer.models import (
+from sugarsearch.models import (
     Direction,
     Objective,
     OptimizationContract,
@@ -13,8 +13,8 @@ from black_box_optimizer.models import (
     ParameterKind,
     StopPolicy,
 )
-from black_box_optimizer.records import TrialRecord
-from black_box_optimizer.stop_policy import StopDecision, StopPolicyEvaluator
+from sugarsearch.records import TrialRecord
+from sugarsearch.stop_policy import StopDecision, StopPolicyEvaluator
 
 
 def make_trial_record(trial_id: int) -> TrialRecord:

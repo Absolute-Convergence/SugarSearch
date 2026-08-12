@@ -22,9 +22,9 @@ import unittest
 from importlib.util import find_spec
 from pathlib import Path
 
-from black_box_optimizer import runner
-from black_box_optimizer.history import TrialHistory
-from black_box_optimizer.models import (
+from sugarsearch import runner
+from sugarsearch.history import TrialHistory
+from sugarsearch.models import (
     AlgorithmSpec,
     CandidateConfiguration,
     Direction,
@@ -35,9 +35,9 @@ from black_box_optimizer.models import (
     StopPolicy,
     WorkerSpec,
 )
-from black_box_optimizer.records import build_trial_record
-from black_box_optimizer.search.registry import create_algorithm
-from black_box_optimizer.stop_policy import StopPolicyEvaluator
+from sugarsearch.records import build_trial_record
+from sugarsearch.search.registry import create_algorithm
+from sugarsearch.stop_policy import StopPolicyEvaluator
 
 if find_spec("torch") is None:
     raise unittest.SkipTest("PyTorch is optional and the Iris worker needs it")
